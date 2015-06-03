@@ -12,20 +12,16 @@
     unzip(zipfile="./data/exdata-data-household_power_consumption.zip",exdir="./data")
     
     ## Read input file
-    data_input <- read.csv("./data//household_power_consumption.txt", header=T, sep=';', na.strings="?", 
-                       nrows=2075259, check.names=F, stringsAsFactors=F, comment.char="", quote='\"')
+    datainput <- "./data/household_power_consumption.txt"
+    data <- read.table(datainput, header=TRUE, sep=";", stringsAsFactors=FALSE, dec=".")
 
     ## Select only 2 days out of data_input file
-    data_2days <- data_input[data_input$Date %in% c("1/2/2007","2/2/2007") ,]
+    data_2days <- data[data$Date %in% c("1/2/2007","2/2/2007") ,]
 
     ## Converting dates
-    datetime <- paste(as.Date(data_2days$Date), data_2days$Time)
-    data_2days$Datetime <- as.POSIXct(datetime)
+    globalActivePower <- as.numeric(data_2days$Global_active_power)
 
     ## Plot 1
-    hist(data_2days$Global_active_power, main="Global Active Power", 
-        xlab="Global Active Power (kilowatts)", ylab="Frequency", col="Red")
-
-    ## Saving to a file
-    dev.copy(png, file="plot1.png", height=480, width=480)
+    png("plot1.png", width=480, height=480)
+    hist(globalActivePower, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
     dev.off()
