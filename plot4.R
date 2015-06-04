@@ -1,4 +1,4 @@
-## This script will reconstruct the existing plots (plot 2) the household energy usage varies over a 2-day
+## This script will reconstruct the existing plots (plot 4) the household energy usage varies over a 2-day
 ## period 2007-02-01 and 2007-02-02    with 2,075,259 rows and 9 columns input file.
 
     ## Read Input file
